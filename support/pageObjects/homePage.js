@@ -1,13 +1,19 @@
+import { expect } from '@playwright/test';
+
 class homePage {
     constructor(page) {
         this.page = page;
-        this.createAccTxt = page.locator('a=Create an account');
-      }
+        this.createAccTxt = page.getByRole('link', { name: 'Create an Account' });
+    }
 
-//to enhance
-    async testCreateAcc() {
+    async accessPage() {
+        await this.page.goto('/'); 
+        await expect(this.page).toHaveTitle(/Home Page/);
+    }
 
+    async createAcc() {
+        await this.createAccTxt.click();
     }
 }
 
-export default homePage();
+export default homePage;
