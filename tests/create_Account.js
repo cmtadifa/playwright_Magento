@@ -1,5 +1,4 @@
-// @ts-check
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 import homePage from '../support/pageObjects/homePage';
 
 

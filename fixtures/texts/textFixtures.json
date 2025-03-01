@@ -1,0 +1,19 @@
+{
+    "create_Account" : {    
+        "header" : "Create New Customer Account",
+        "subHeader" : "Personal Information",
+        "firstName" : "First Name",
+        "lastName" : "Last Name",
+        "subHeader2" : "Sign-in Information",
+        "email" : "Email",
+        "password" : "Password",
+        "passwordErrorDefault" : "Password Strength: No Password",
+        "passwordErrorWeak" : "Password Strength: Weak",
+        "passwordErrorMedium" : "Password Strength: Medium",
+        "passwordErrorStrong" : "Password Strength: Strong",
+        "passwordErrorVeryStrong" : "Password Strength: Very Strong",
+        "confirmPassword" : "Confirm Password",
+        "requiredTxt" : "* Required Fields",
+        "createAccountBtn" : "Create an Account"
+    }
+}

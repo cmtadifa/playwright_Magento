@@ -1,6 +1,5 @@
 import { expect } from '@playwright/test';
-import { link } from 'fs';
-
+import * as cc from '../commands';
 class homePage {
     constructor(page) {
         this.page = page;
@@ -13,7 +12,7 @@ class homePage {
     }
 
     async createAcc() {
-        await this.createAccTxt.click();
+        await cc.customClick(this.createAccTxt);
     }
 }
 
