@@ -14,6 +14,10 @@ class homePage {
     async createAcc() {
         await cc.customClick(this.createAccTxt);
     }
+
+    async gotoHomepage() {
+        require('../TCM/accessHomepage');
+    }
 }
 
 export default homePage;
