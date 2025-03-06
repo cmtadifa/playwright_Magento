@@ -6,12 +6,12 @@ class homePage {
         this.createAccTxt = page.getByRole('link', { name: 'Create an Account'});
     }
 
-    async accessPage() {
+    async navigate() {
         await this.page.goto('/'); 
         await expect(this.page).toHaveTitle(/Home Page/);
     }
 
-    async createAcc() {
+    async clickCreateAcc() {
         await cc.customClick(this.createAccTxt);
     }
 

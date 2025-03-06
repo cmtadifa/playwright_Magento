@@ -2,26 +2,23 @@ import { test } from '@playwright/test';
 import homePage from '../support/pageObjects/homePage';
 import accountsPage from '../support/pageObjects/accountsPage';
 
-test.describe.configure({ mode: 'serial' });
+test.describe('Magento Creating New Customer Account', () => {
 
-let page; // Shared page
+    test.beforeEach(async ({ page }) => {
+        const hPage = new homePage(page);
+        await hPage.navigate();
+        await hPage.clickCreateAcc();
+    });
 
-test.beforeAll(async ({ browser }) => {
-    const context = await browser.newContext(); // ✅ Shared context
-    page = await context.newPage(); // ✅ Shared page instance
-});
+        test('Should register a new account', async ({ page }) => {
+            const aPage = new accountsPage(page);
 
-test('should verify home page title', async () => {
-    const hPage = new homePage(page);
-    await hPage.accessPage();
-});
+            //fill-in all the Personal Information
+            await aPage.fillPersonalInformation();
 
-test('should click create account', async () => {
-    const hPage = new homePage(page);
-    await hPage.createAcc();
-});
+            //fill-in all the Sign-In Information
+            await aPage.fillSignInInformation();
+        });
 
-test('should Enter a Name', async () => {
-    const accPage = new accountsPage(page);
-    await accPage.testFName();
+
 });
