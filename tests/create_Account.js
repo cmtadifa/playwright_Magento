@@ -18,6 +18,9 @@ test.describe('Magento Creating New Customer Account', () => {
 
             //fill-in all the Sign-In Information
             await aPage.fillSignInInformation();
+
+            //click the Create Account button
+            await aPage.clickCreateAccBtn();
         });
 
 
