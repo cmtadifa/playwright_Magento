@@ -15,6 +15,7 @@
   "homepage": "https://github.com/cmtadifa/playwright_Magento#readme",
   "description": "",
   "devDependencies": {
+    "@faker-js/faker": "^9.6.0",
     "@playwright/test": "^1.50.1",
     "@types/node": "^22.13.5"
   },

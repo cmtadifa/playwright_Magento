@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test';
-import homePage from './homePage'; 
+import { faker } from '@faker-js/faker';
 import * as cc from '../commands';
 class accountsPage {
     constructor(page) {
@@ -10,18 +10,22 @@ class accountsPage {
         this.password = page.locator('#password');
         this.cPassword = page.locator('#password-confirmation');
         this.createAccBtn = page.locator('.action.submit.primary');
+
+        this.fName = faker.person.firstName();
+        this.lName = faker.person.lastName();
+        this.randomNum = faker.number.int({ min: 100, max: 999 });
     }
 
     
     async fillPersonalInformation() {
-        await this.firstname.fill('John');
-        await this.lastname.fill('Doe');
+        await this.firstname.fill(this.fName);
+        await this.lastname.fill(this.lName);
     }
 
     async fillSignInInformation() {
-        await this.email.fill('asad@asd.com');
-        await this.password.fill('123456');
-        await this.cPassword.fill('123456');
+        await this.email.fill(`${this.fName}${this.lName}${this.randomNum}@guerrillamailblock.com`);
+        await this.password.fill('clientAccount@123');
+        await this.cPassword.fill('clientAccount@123');
 
     }
 
