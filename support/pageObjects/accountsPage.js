@@ -48,6 +48,7 @@ class accountsPage {
 
     async verifyclickSignInBtn() {
         await cc.customClick(this.signInBtn);
+        expect(this.page.url()).toBe('https://magento.softwaretestingboard.com/');
     }
 
   
