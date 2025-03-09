@@ -11,7 +11,13 @@ test.describe('Magento Login as a User', () => {
     });
 
         test('Should Successfully login Account', async ({ page }) => {
-            
+            const aPage = new accountsPage(page);
+
+            //fill-in all the Sign-In Information
+            await aPage.verifySignIn();
+
+            //click the Sign-In button
+            await aPage.verifyclickSignInBtn();
         });
 
 

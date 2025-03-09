@@ -4,7 +4,7 @@ class homePage {
     constructor(page) {
         this.page = page;
         this.createAccLink = page.getByRole('link', { name: 'Create an Account'});
-        this.createAccLink = page.getByRole('link', { name: 'Create an Account'});
+        this.loginLink = page.getByRole('link', { name: 'Sign In'});
     }
 
     async navigate() {
@@ -17,7 +17,7 @@ class homePage {
     }
 
     async clickSignIn() {
-        await cc.customClick(this.createAccLink);
+        await cc.customClick(this.loginLink);
     }
 
     async gotoHomepage() {

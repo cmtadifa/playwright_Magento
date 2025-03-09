@@ -1,26 +1,22 @@
-import { test } from '@playwright/test';
-import homePage from '../support/pageObjects/homePage';
-import accountsPage from '../support/pageObjects/accountsPage';
+import { test } from '../fixtures/base';
 
 test.describe('Magento Creating New Customer Account', () => {
 
-    test.beforeEach(async ({ page }) => {
-        const hPage = new homePage(page);
-        await hPage.navigate();
-        await hPage.clickCreateAcc();
+    test.beforeEach(async ({ Homepage }) => {
+        await Homepage.navigate();
+        await Homepage.clickCreateAcc();
     });
 
-        test('Should register a new account', async ({ page }) => {
-            const aPage = new accountsPage(page);
+        test('Should register a new account', async ({ Accountpage }) => {
 
             //fill-in all the Personal Information
-            await aPage.fillPersonalInformation();
+            await Accountpage.verifyPersonalInformation();
 
             //fill-in all the Sign-In Information
-            await aPage.fillSignInInformation();
+            await Accountpage.verifySignInInformation();
 
             //click the Create Account button
-            await aPage.clickCreateAccBtn();
+            await Accountpage.verifyclickCreateAccBtn();
         });
 
 
