@@ -1,6 +1,8 @@
 import { expect } from '@playwright/test';
 import { faker } from '@faker-js/faker';
+import users from '../../fixtures/test-data/users.json';
 import * as cc from '../commands';
+
 class accountsPage {
     constructor(page) {
         this.page = page;
@@ -13,6 +15,8 @@ class accountsPage {
         this.signInEmail = page.locator('#email');
         this.signInpassword = page.locator('#pass');
         this.signInBtn = page.locator('#send2');
+
+        //fakerAPI
         this.fName = faker.person.firstName();
         this.lName = faker.person.lastName();
         this.randomNum = faker.number.int({ min: 100, max: 999 });
@@ -38,8 +42,8 @@ class accountsPage {
 
     //sign in
     async verifySignIn() {
-        await this.signInEmail.fill('clientAccount@123');
-        await this.signInpassword.fill('clientAccount@123');
+        await this.signInEmail.fill(users.user.users1.Email);
+        await this.signInpassword.fill(users.user.users1.Password);
     }
 
     async verifyclickSignInBtn() {
