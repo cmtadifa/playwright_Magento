@@ -1,8 +1,2 @@
-test.describe.configure({ mode: 'serial' });
-
-let page; 
-
-test.beforeAll(async ({ browser }) => {
-    const context = await browser.newContext(); 
-    page = await context.newPage(); 
-});
+// create a adding a cart on
+// create purchase order from the cart
