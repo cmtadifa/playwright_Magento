@@ -1,2 +1,6 @@
 // create a adding a cart on
 // create purchase order from the cart
+// create a payment from the purchase order
+// create a shipment from the purchase order
+// create a invoice from the purchase order
+// create a credit memo from the invoice
