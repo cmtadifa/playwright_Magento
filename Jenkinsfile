@@ -19,7 +19,17 @@ pipeline {
          steps {
             bat 'npm ci'
             bat 'npx playwright install'
-            bat "npx playwright test tests/${params.JS_FILE}"
+            bat "npx playwright test --project=${params.BROWSER} --reporter=list tests/${params.JS_FILE}"
+         }
+      }
+      post {
+         always {
+            publishHTML (target: [
+                  reportDir: 'playwright-report',
+                  reportFiles: 'index.html',
+                  alwaysLinkToLastBuild: true,
+                  keepAll: true
+            ])
          }
       }
    }
