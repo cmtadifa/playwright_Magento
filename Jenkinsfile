@@ -22,15 +22,15 @@ pipeline {
             bat "npx playwright test --project=${params.BROWSER} --reporter=list tests/${params.JS_FILE}"
          }
       }
-      post {
-         always {
-            publishHTML (target: [
-                  reportDir: 'playwright-report',
-                  reportFiles: 'index.html',
-                  alwaysLinkToLastBuild: true,
-                  keepAll: true
+   }
+   post {
+      always {
+         publishHTML (target: [
+               reportDir: 'playwright-report',
+               reportFiles: 'index.html',
+               alwaysLinkToLastBuild: true,
+               keepAll: true
             ])
          }
       }
-   }
 }
