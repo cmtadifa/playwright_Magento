@@ -2,7 +2,9 @@ pipeline {
    agent any
 
    parameters {
-       choice(name: 'BROWSER', choices: ['chromium', 'firefox', 'webkit'], description: 'Select the browser to run tests')
+      choice(name: 'BROWSER', choices: ['chromium', 'firefox', 'webkit'], description: 'Select the browser to run tests')
+      // choice(name: 'BRANCH_NAME', choices: ['main', 'master', 'attendance'], description: 'Select Git branch')
+      choice(name: 'JS_FILE', choices: ['create_Account.js', 'Sign_In.js'], description: 'Select JS test file')
    }
 
    stages {
@@ -17,7 +19,7 @@ pipeline {
          steps {
             bat 'npm ci'
             bat 'npx playwright install'
-            bat 'npx playwright test'
+            bat "npx playwright test tests/${params.JS_FILE}"
          }
       }
    }
