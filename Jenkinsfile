@@ -1,14 +1,15 @@
 pipeline {
    agent { 
       docker { 
-         image 'mcr.microsoft.com/playwright:v1.51.0-noble' 
+         image 'node:12.16.2'
+            args '-p 3000:3000'
       } 
    }
 
    parameters {
        choice(name: 'BROWSER', choices: ['chromium', 'firefox', 'webkit'], description: 'Select the browser to run tests')
    }
-   
+
    stages {
       stage('Run Playwright test') {
          steps {
