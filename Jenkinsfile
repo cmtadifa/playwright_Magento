@@ -3,7 +3,6 @@ pipeline {
 
    parameters {
       choice(name: 'BROWSER', choices: ['chromium', 'firefox', 'webkit'], description: 'Select the browser to run tests')
-      // choice(name: 'BRANCH_NAME', choices: ['main', 'master', 'attendance'], description: 'Select Git branch')
       choice(name: 'JS_FILE', choices: ['create_Account.js', 'Sign_In.js'], description: 'Select JS test file')
    }
 
@@ -15,22 +14,16 @@ pipeline {
             }
          }
       }
-      stage('e2e-tests') {
+      stage('Install dependencies') {
          steps {
             bat 'npm ci'
             bat 'npx playwright install'
+         }
+      }
+      stage('e2e-tests') {
+         steps {
             bat "npx playwright test --project=${params.BROWSER} --reporter=list tests/${params.JS_FILE}"
          }
       }
    }
-   post {
-      always {
-         publishHTML (target: [
-               reportDir: 'playwright-report',
-               reportFiles: 'index.html',
-               alwaysLinkToLastBuild: true,
-               keepAll: true
-            ])
-         }
-      }
 }
