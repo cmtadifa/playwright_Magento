@@ -15,9 +15,9 @@ pipeline {
       }
       stage('e2e-tests') {
          steps {
-            sh 'npm ci'
-            sh 'npx playwright install'
-            sh 'npx playwright test'
+            bat 'npm ci'
+            // bat 'npx playwright install'
+            bat 'npx playwright test'
          }
       }
    }
