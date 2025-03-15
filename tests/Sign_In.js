@@ -1,23 +1,19 @@
-import { test } from '@playwright/test';
-import homePage from '../support/pageObjects/homePage';
-import accountsPage from '../support/pageObjects/accountsPage';
+import { test } from '../fixtures/base';
 
 test.describe('Magento Login as a User', () => {
 
-    test.beforeEach(async ({ page }) => {
-        const hPage = new homePage(page);
-        await hPage.navigate();
-        await hPage.clickSignIn();
+    test.beforeEach(async ({ Homepage }) => {
+        await Homepage.navigate();
+        await Homepage.clickSignIn();
     });
 
-        test('Should Successfully login Account', async ({ page }) => {
-            const aPage = new accountsPage(page);
+        test('Should Successfully login Account', async ({ Accountpage }) => {
 
             //fill-in all the Sign-In Information
-            await aPage.verifySignIn();
+            await Accountpage.verifySignIn();
 
             //click the Sign-In button
-            await aPage.verifyclickSignInBtn();
+            await Accountpage.verifyclickSignInBtn();
         });
 
 
