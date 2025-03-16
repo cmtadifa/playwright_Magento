@@ -19,5 +19,12 @@ export const test = base.extend({
       // Use the fixture value in the test.
       await use(new accountsPage(page));
     },
+    login: async ({ Homepage, Accountpage }, use) => {
+      await Homepage.navigate();
+      await Homepage.clickSignIn();
+      await Accountpage.verifySignIn();
+      await Accountpage.verifyclickSignInBtn();
+      await use();
+  }
   });
 export { expect } from '@playwright/test';
