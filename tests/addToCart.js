@@ -2,13 +2,15 @@ import { test } from '../fixtures/base';
 
 test.describe('Add Item to a Cart', () => {
 
-    test.beforeEach(async ({ login }) => {
-        await login;
+    test.beforeEach(async ({ Homepage }) => {
+        // await login;
+        await Homepage.navigate();
     });
 
-        test('Add item on cart', async ({ Homepage }) => {
-            console.log('selecting item');
+        test('Add item on cart', async ({ page, Homepage }) => {
         await Homepage.selectItem();
+        await page.pause();
+        // await Homepage.selectSize();
         });
 
 

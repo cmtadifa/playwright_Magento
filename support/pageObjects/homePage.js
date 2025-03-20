@@ -13,6 +13,13 @@ class homePage {
         return this.page.locator(`.product-item-name a[title="${productName}"]`);
     }
 
+    getProductSize() {
+        const sizes = ['XS', 'S', 'M', 'L', 'XL'];
+        const randomSize = sizes[Math.floor(Math.random() * sizes.length)]; 
+        console.log(randomSize);
+        return cc.customClick(this.page.getByRole("option", { name: randomSize }));
+    }
+
     async navigate() {
         await this.page.goto('/'); 
         await expect(this.page).toHaveTitle(/Home Page/);1
@@ -31,10 +38,23 @@ class homePage {
     }
 
     async selectItem() {
-        const items = ['Radiant Tee', 'Breathe-Easy Tank', 'Argus All-Weather Tank', 'Hero Hoodie', 'fusion backpack', 'Push It Messenger Bag'];
+        const items = ['Radiant Tee', 'Breathe-Easy Tank', 'Argus All-Weather Tank', 'Hero Hoodie', 'fusion backpack', 'Push It Messenger Bag']; 
         const randomProduct = items[Math.floor(Math.random() * items.length)]; 
-        await cc.customClick(this.getProductItem(randomProduct));
+        await cc.customClick(this.getProductItem(items[5]));
+
+        const itemWithSizes = ['Radiant Tee', 'Breathe-Easy Tank', 'Argus All-Weather Tank', 'Hero Hoodie'];
+        if (itemWithSizes.includes(randomProduct)) {
+            await this.getProductSize();
+        }else{
+            console.log('No size available for this product');
+        }
     }
+
+    // selectSize() {
+    //     const size = ['XS', 'S', 'M', 'L', 'XL'];
+    //     const randomSize = size[Math.floor(Math.random() * size.length)]; 
+    //     return cc.customClick(this.getProductSize(randomSize));
+    // }
 }
 
 export default homePage;
