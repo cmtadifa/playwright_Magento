@@ -7,7 +7,7 @@ test.describe('Add Item to a Cart', () => {
     });
 
         test('Add item on cart', async ({ Homepage }) => {
-
+            console.log('selecting item');
         await Homepage.selectItem();
         });
 

@@ -5,13 +5,12 @@ class homePage {
         this.page = page;
         this.createAccLink = page.getByRole('link', { name: 'Create an Account'});
         this.loginLink = page.getByRole('link', { name: 'Sign In'});
-        this.productItem = page.getByRole('linstitem', { name: 'Product'});
         this.id = page.locator('#search');
     }
 
-    //parameterized consatructor
+    //parameterized constructor
     getProductItem(productName) {
-        return this.page.getByRole('listitem', { name: productName }); 
+        return this.page.locator(`.product-item-name a[title="${productName}"]`);
     }
 
     async navigate() {
@@ -32,10 +31,9 @@ class homePage {
     }
 
     async selectItem() {
-        // const items = ['Radiant Tee', 'Breathe-Easy Tank', 'Argus All-Weather Tank']
-        // const randomProduct = items[Math.floor(Math.random() * items.length)]; 
-        // await cc.customClick(this.getProductItem(randomProduct));
-        await this.id.fill('1234');
+        const items = ['Radiant Tee', 'Breathe-Easy Tank', 'Argus All-Weather Tank', 'Hero Hoodie', 'fusion backpack', 'Push It Messenger Bag'];
+        const randomProduct = items[Math.floor(Math.random() * items.length)]; 
+        await cc.customClick(this.getProductItem(randomProduct));
     }
 }
 
