@@ -40,7 +40,7 @@ class homePage {
     async selectItem() {
         const items = ['Radiant Tee', 'Breathe-Easy Tank', 'Argus All-Weather Tank', 'Hero Hoodie', 'fusion backpack', 'Push It Messenger Bag']; 
         const randomProduct = items[Math.floor(Math.random() * items.length)]; 
-        await cc.customClick(this.getProductItem(items[5]));
+        await cc.customClick(this.getProductItem(randomProduct));
 
         const itemWithSizes = ['Radiant Tee', 'Breathe-Easy Tank', 'Argus All-Weather Tank', 'Hero Hoodie'];
         if (itemWithSizes.includes(randomProduct)) {
