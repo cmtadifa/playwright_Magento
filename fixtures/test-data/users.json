@@ -4,7 +4,8 @@
             "FirstName": "Carlos",
             "LastName": "Magenta",
             "Email": "CarlosMagenta21@guerrillamailblock.com",
-            "Password": "clientAccount@123"
+            "Password": "clientAccount@123",
+            "WrongPassword": "clientAccount@1234"
         }
     }
 }

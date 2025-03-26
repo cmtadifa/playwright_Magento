@@ -46,12 +46,17 @@ class accountsPage {
         await this.signInpassword.fill(users.user.users1.Password);
     }
 
+    async verifyInvalidSignIn() {
+        await this.signInEmail.fill(users.user.users1.Email);
+        await this.signInpassword.fill(users.user.users1.WrongPassword);
+    }
+
     async verifyclickSignInBtn() {
         await cc.customClick(this.signInBtn);
         expect(this.page.url()).toBe('https://magento.softwaretestingboard.com/');
     }
 
-  
+
 }
 
 export default accountsPage;
