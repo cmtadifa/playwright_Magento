@@ -1,4 +1,4 @@
-import { test } from '../fixtures/base';
+import { test } from '../../fixtures/base';
 
 test.describe('Magento Login as a User', () => {
 

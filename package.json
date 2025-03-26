@@ -2,7 +2,9 @@
   "name": "playwright-magento",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "Sign_In": "npx playwright test tests/Sign_In.js --headed"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cmtadifa/playwright_Magento.git"

@@ -6,6 +6,7 @@ class homePage {
         this.createAccLink = page.getByRole('link', { name: 'Create an Account'});
         this.loginLink = page.getByRole('link', { name: 'Sign In'});
         this.id = page.locator('#search');
+        this.color = page.locator('.swatch-option.color');
     }
 
     //parameterized constructor
@@ -13,12 +14,19 @@ class homePage {
         return this.page.locator(`.product-item-name a[title="${productName}"]`);
     }
 
+    //refactor to handle unavailable sizes
     getProductSize() {
         const sizes = ['XS', 'S', 'M', 'L', 'XL'];
         const randomSize = sizes[Math.floor(Math.random() * sizes.length)]; 
-        console.log(randomSize);
-        return cc.customClick(this.page.getByRole("option", { name: randomSize }));
+        return cc.customClick(this.page.getByRole("option", { name: "randomSize" }));
     }
+
+    // getProductColor() {
+    //     const color = ['Blue', 'Orange', 'Purple', 'White', 'Yellow', 'Gray', 'Black', 'Green'];
+    //     const randomColor = Math.floor(Math.random() * 11);
+    //     if (this.color[1])
+    //     return cc.customClick(this.page.locator(`.swatch-option.color[randomColor]`));
+    // }
 
     async navigate() {
         await this.page.goto('/'); 
@@ -40,6 +48,7 @@ class homePage {
     async selectItem() {
         const items = ['Radiant Tee', 'Breathe-Easy Tank', 'Argus All-Weather Tank', 'Hero Hoodie', 'fusion backpack', 'Push It Messenger Bag']; 
         const randomProduct = items[Math.floor(Math.random() * items.length)]; 
+        const colorCount = this.color.count();
         await cc.customClick(this.getProductItem(randomProduct));
 
         const itemWithSizes = ['Radiant Tee', 'Breathe-Easy Tank', 'Argus All-Weather Tank', 'Hero Hoodie'];
@@ -48,13 +57,15 @@ class homePage {
         }else{
             console.log('No size available for this product');
         }
-    }
 
-    // selectSize() {
-    //     const size = ['XS', 'S', 'M', 'L', 'XL'];
-    //     const randomSize = size[Math.floor(Math.random() * size.length)]; 
-    //     return cc.customClick(this.getProductSize(randomSize));
-    // }
+        // if (colorCount) {
+        //     const colorLength = this.color.length();
+        //     const randomColor = Math.floor(Math.random() * colorLength);
+        //     await cc.customClick(this.color[randomColor]);
+        // }else{
+        //     console.log('No color available for this product');
+        // }
+    }
 }
 
 export default homePage;
