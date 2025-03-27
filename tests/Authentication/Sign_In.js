@@ -14,12 +14,20 @@ test.describe('Magento Authentication', () => {
 
             //click the Sign-In button
             await Accountpage.verifyclickSignInBtn();
+
+            await Accountpage.verifyhomepage();
         });
 
         test('Fails to Login with Invalid Credentials', async ({ Accountpage }) => {
+            await test.step('Fails to Login with Invalid Credentials', async () => {
+                //fill-in all the Sign-In Information
+                await Accountpage.verifyInvalidSignIn();
 
-            //fill-in all the Sign-In Information
-            await Accountpage.verifyInvalidSignIn();
+                await Accountpage.verifyclickSignInBtn();
+
+                await Accountpage.verifyhomepage();
+            });
+            
         });
 
 });
