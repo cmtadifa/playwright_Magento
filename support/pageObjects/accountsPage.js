@@ -15,6 +15,7 @@ class accountsPage {
         this.signInEmail = page.locator('#email');
         this.signInpassword = page.locator('#pass');
         this.signInBtn = page.locator('#send2');
+        this.errorLogin = page.getByText('The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later.');
 
         //fakerAPI
         this.fName = faker.person.firstName();
@@ -57,6 +58,10 @@ class accountsPage {
 
     async verifyhomepage() {
         expect(this.page.url()).toContain('https://magento.softwaretestingboard.com/');
+    }
+
+    async verifyErrorLogin() {
+        expect(await this.errorLogin.textContent()).toBe('The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later.');
     }
 
 
