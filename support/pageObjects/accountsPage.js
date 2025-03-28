@@ -16,6 +16,9 @@ class accountsPage {
         this.signInpassword = page.locator('#pass');
         this.signInBtn = page.locator('#send2');
         this.errorLogin = page.getByText('The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later.');
+        this.errorEmail = page.locator('#email-error');
+        this.errorPass = page.locator('#pass-error');
+        this.errorRequired = page.getByText('A login and a password are required.');
 
         //fakerAPI
         this.fName = faker.person.firstName();
@@ -62,6 +65,18 @@ class accountsPage {
 
     async verifyErrorLogin() {
         expect(await this.errorLogin.textContent()).toBe('The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later.');
+    }
+    
+    async verifyEmailError() {
+        expect(await this.errorEmail.textContent()).toBe('This is a required field.');
+    }
+
+    async verifyPassError() {
+        expect(await this.errorPass.textContent()).toBe('This is a required field.');
+    }
+
+    async verifyErrorRequried() {
+        expect(await this.errorRequired.textContent()).toBe('A login and a password are required.');
     }
 
 

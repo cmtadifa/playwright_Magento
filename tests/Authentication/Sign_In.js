@@ -31,15 +31,15 @@ test.describe('Magento Authentication', () => {
             });
         });
 
-        // test('Fails to Login with Invalid Credentials', async ({ Accountpage }) => {
-        //     await test.step('Fails to Login with Invalid Credentials', async () => {
-        //         //fill-in all the Sign-In Information
-        //         await Accountpage.verifyInvalidSignIn();
+        test('Required field Error', async ({ Accountpage }) => {
+            await test.step('required field error', async () => {
 
-        //         await Accountpage.verifyclickSignInBtn();
+                await Accountpage.verifyclickSignInBtn();
 
-        //         await Accountpage.verifyhomepage();
-        //     });
-        // });
+                await Accountpage.verifyErrorRequried();
+
+                // await Accountpage.pause();
+            });
+        });
 
 });
