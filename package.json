@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "Sign_In": "npx playwright test tests/Authentication/Sign_In.js --headed"
+    "SignInScenario": "npx playwright test tests/Authentication/SignInScenario.js --headed"
   },
   "repository": {
     "type": "git",
