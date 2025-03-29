@@ -32,7 +32,7 @@ export default defineConfig({
     baseURL: 'https://magento.softwaretestingboard.com/',
     actionTimeout: 30000,
     // screenshot: 'on',
-    video: 'on',
+    // video: 'on',
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
   },

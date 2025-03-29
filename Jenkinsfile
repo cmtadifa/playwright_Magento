@@ -28,7 +28,7 @@ pipeline {
                     if (params.JS_FILE == 'SignInScenario.js') {
                         filePath = "tests/Authentication/${params.JS_FILE}"
                     }
-                     bat "npx playwright test --project=${params.BROWSER} --reporter=html ${filePath}"
+                     bat "npx playwright test --project=${params.BROWSER} --reporter=list  ${filePath}"
                 }
          }
       }
