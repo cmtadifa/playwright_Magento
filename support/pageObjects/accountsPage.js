@@ -6,12 +6,22 @@ import * as cc from '../commands';
 class accountsPage {
     constructor(page) {
         this.page = page;
+
+        //SignUp
         this.firstname = page.locator('#firstname');
         this.lastname = page.locator('#lastname');
+        this.createAccBtn = page.locator('.action.submit.primary');
+
+        //fakerAPI
+        this.fName = faker.person.firstName();
+        this.lName = faker.person.lastName();
+        this.randomNum = faker.number.int({ min: 100, max: 999 });
+
+
+        //SignIn
         this.email = page.locator('#email_address');
         this.password = page.locator('#password');
         this.cPassword = page.locator('#password-confirmation');
-        this.createAccBtn = page.locator('.action.submit.primary');
         this.signInEmail = page.locator('#email');
         this.signInpassword = page.locator('#pass');
         this.signInBtn = page.locator('#send2');
@@ -19,14 +29,10 @@ class accountsPage {
         this.errorEmail = page.locator('#email-error');
         this.errorPass = page.locator('#pass-error');
         this.errorRequired = page.getByText('A login and a password are required.');
-
-        //fakerAPI
-        this.fName = faker.person.firstName();
-        this.lName = faker.person.lastName();
-        this.randomNum = faker.number.int({ min: 100, max: 999 });
+        
     }
 
-    //sign up
+    //SignUp
     async verifyPersonalInformation() {
         await this.firstname.fill(this.fName);
         await this.lastname.fill(this.lName);
@@ -44,7 +50,7 @@ class accountsPage {
         expect(this.page.url()).toBe('https://magento.softwaretestingboard.com/customer/account/');
     }
 
-    //sign in
+    //SignIn
     async verifySignIn() {
         await this.signInEmail.fill(users.user.users1.Email);
         await this.signInpassword.fill(users.user.users1.Password);
