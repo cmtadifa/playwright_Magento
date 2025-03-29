@@ -22,7 +22,14 @@ pipeline {
       }
       stage('e2e-tests') {
          steps {
-            bat "npx playwright test --project=${params.BROWSER} --reporter=list tests/${params.JS_FILE}"
+            script {
+                    def filePath = "tests/${params.JS_FILE}"
+
+                    if (params.JS_FILE == 'SignInScenario.js') {
+                        filePath = "tests/Authentication/${params.JS_FILE}"
+                    }
+                     bat "npx playwright test --project=${params.BROWSER} --reporter=list tests/${params.JS_FILE}"
+                }
          }
       }
    }
