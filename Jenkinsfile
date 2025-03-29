@@ -3,7 +3,7 @@ pipeline {
 
    parameters {
       choice(name: 'BROWSER', choices: ['chromium', 'firefox', 'webkit'], description: 'Select the browser to run tests')
-      choice(name: 'JS_FILE', choices: ['create_Account.js', 'Sign_In.js', 'addToCart.js'], description: 'Select JS test file')
+      choice(name: 'JS_FILE', choices: ['create_Account.js', 'SignInScenario.js', 'addToCart.js'], description: 'Select JS test file')
    }
 
    stages {
