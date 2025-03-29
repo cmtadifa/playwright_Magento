@@ -11,7 +11,6 @@ class accountsPage {
         this.firstname = page.locator('#firstname');
         this.lastname = page.locator('#lastname');
         this.createAccBtn = page.locator('.action.submit.primary');
-
         //fakerAPI
         this.fName = faker.person.firstName();
         this.lName = faker.person.lastName();
@@ -81,7 +80,7 @@ class accountsPage {
         expect(await this.errorPass.textContent()).toBe('This is a required field.');
     }
 
-    async verifyErrorRequried() {
+    async verifyErrorRequired() {
         expect(await this.errorRequired.textContent()).toBe('A login and a password are required.');
     }
 

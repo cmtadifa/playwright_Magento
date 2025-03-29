@@ -31,14 +31,13 @@ test.describe('Magento Authentication', () => {
             });
         });
 
-        test('Required field Error', async ({ Accountpage }) => {
-            await test.step('required field error', async () => {
+        test('Login and Password field required Error', async ({ Accountpage }) => {
+            await test.step('Login and Password field required', async () => {
 
                 await Accountpage.verifyclickSignInBtn();
 
-                await Accountpage.verifyErrorRequried();
+                await Accountpage.verifyErrorRequired();
 
-                // await Accountpage.pause();
             });
         });
 
