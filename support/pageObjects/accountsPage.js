@@ -11,6 +11,11 @@ class accountsPage {
         this.firstname = page.locator('#firstname');
         this.lastname = page.locator('#lastname');
         this.createAccBtn = page.locator('.action.submit.primary');
+        this.firstnameError = page.locator('#firstname-error');
+        this.lastnameError = page.locator('#lastname-error');
+        this.emailError = page.locator('#email_address-error');
+        this.passwordError = page.locator('#password-error');
+        this.cPasswordError = page.locator('#password-confirmation-error');
         //fakerAPI
         this.fName = faker.person.firstName();
         this.lName = faker.person.lastName();
@@ -46,7 +51,10 @@ class accountsPage {
 
     async verifyclickCreateAccBtn() {
         await cc.customClick(this.createAccBtn);
-        expect(this.page.url()).toBe('https://magento.softwaretestingboard.com/customer/account/');
+    }
+
+    async verifyRequiredErrorField() {
+        await expect(this.firstnameError, this.lastnameError, this.emailError, this.passwordError, this.cPasswordError).toBeVisible();
     }
 
     //SignIn

@@ -17,6 +17,19 @@ test.describe('Magento Signing Up Scenarios', () => {
 
                 //click the Create Account button
                 await Accountpage.verifyclickCreateAccBtn();
+
+                await Accountpage.verifyhomepage();
+            });
+        });
+
+        test.only('Sign up Required Field Error', async ({ page, Accountpage }) => {
+            await test.step('Sign up Required Field', async () => {
+
+                //click the Create Account button
+                await Accountpage.verifyclickCreateAccBtn();
+
+                await Accountpage.verifyRequiredErrorField();
+
             });
         });
 
