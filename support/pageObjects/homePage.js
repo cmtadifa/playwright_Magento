@@ -14,19 +14,24 @@ class homePage {
         return this.page.locator(`.product-item-name a[title="${productName}"]`);
     }
 
-    //refactor to handle unavailable sizes
-    getProductSize() {
+    selectProductSize() {
         const sizes = ['XS', 'S', 'M', 'L', 'XL'];
         const randomSize = sizes[Math.floor(Math.random() * sizes.length)]; 
-        return cc.customClick(this.page.getByRole("option", { name: "randomSize" }));
+        return cc.customClick(this.page.getByRole("option", { name: randomSize }));
     }
 
-    getProductColor() {
-        const colorCount = this.color.count();
-        const randomColor = Math.floor(Math.random() * colorCount);
-        return cc.customClick(this.color[randomColor]);
+    async selectProductColor() {
+        const colorCount = await this.color.count();
+        if (colorCount > 0) {
+            const randomColor = Math.floor(Math.random() * colorCount);
+            await cc.customClick(this.color.nth(randomColor));
+        } else {
+            console.log('No color available for this product');
+        }
     }
 
+
+    // Navigate to the homepage
     async navigate() {
         await this.page.goto('/'); 
         await expect(this.page).toHaveTitle(/Home Page/);1
@@ -45,27 +50,21 @@ class homePage {
     }
 
     async selectItem() {
-        const items = ['Radiant Tee', 'Breathe-Easy Tank', 'Argus All-Weather Tank', 'Hero Hoodie', 'fusion backpack', 'Push It Messenger Bag']; 
+        const items = ['Radiant Tee', 'Breathe-Easy Tank', 'Argus All-Weather Tank', 'Hero Hoodie', 'Fusion Backpack', 'Push It Messenger Bag']; 
         const randomProduct = items[Math.floor(Math.random() * items.length)]; 
-        const colorCount = this.color.count();
-        await cc.customClick(this.getProductItem(randomProduct));
+        await this.getProductItem(randomProduct).click();
 
         const itemWithSizes = ['Radiant Tee', 'Breathe-Easy Tank', 'Argus All-Weather Tank', 'Hero Hoodie'];
         if (itemWithSizes.includes(randomProduct)) {
-            await this.getProductSize();
 
-            await this.getProductColor();
+            await this.selectProductSize();
+
+            await this.selectProductColor();
+
         }else{
             console.log('No size available for this product');
         }
 
-        // if (colorCount) {
-        //     const colorLength = this.color.length();
-        //     const randomColor = Math.floor(Math.random() * colorLength);
-        //     await cc.customClick(this.color[randomColor]);
-        // }else{
-        //     console.log('No color available for this product');
-        // }
     }
 }
 

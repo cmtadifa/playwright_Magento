@@ -4,4 +4,8 @@
 // create a shipment from the purchase order
 // create a invoice from the purchase order
 // create a credit memo from the invoice
-// await Accountpage.pause();
+
+
+// await Accountpage.pause(); --this is for pausing the test
+//npx playwright test --grep @fast --this is for running with tags
+//npx playwright test --grep-invert @fast --this is for running without tags

@@ -23,8 +23,8 @@ class accountsPage {
 
 
         //SignIn
-        this.email = page.locator('#email_address');
-        this.password = page.locator('#password');
+        this.email = page.locator('#email.input-text');
+        this.password = page.locator('#pass.input-text');
         this.cPassword = page.locator('#password-confirmation');
         this.signInEmail = page.locator('#email');
         this.signInpassword = page.locator('#pass');
