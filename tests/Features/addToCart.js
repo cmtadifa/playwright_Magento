@@ -1,19 +1,20 @@
 import { test } from '../../fixtures/base';
 import homePage from '../../support/pageObjects/homePage';
 import Accountpage from '../../support/pageObjects/accountsPage';
-import { time } from 'console';
+import productPage from '../../support/pageObjects/productPage';
 
 test.describe.configure({ mode: 'serial' });
 
 test.describe('Add Item to a Cart', () => {
 
-    let page, Homepage, accpage;
+    let page, Homepage, Accpage, ProductPage;
 
     test.beforeAll(async ({ browser }) => {
 
         page = await browser.newPage();
         Homepage = new homePage(page);
-        accpage = new Accountpage(page);
+        Accpage = new Accountpage(page);
+        ProductPage = new productPage(page);
 
         await Homepage.navigate();
         await Homepage.clickSignIn();
@@ -22,9 +23,9 @@ test.describe('Add Item to a Cart', () => {
     test('Login using Valid Credentials', async () => {
         await test.step('Login using Valid Credentials', async () => {
 
-        await accpage.verifySignIn();
+            await Accpage.verifySignIn();
 
-        await accpage.verifyclickSignInBtn();
+            await Accpage.verifyclickSignInBtn();
 
         });
     });
@@ -33,7 +34,7 @@ test.describe('Add Item to a Cart', () => {
     test('Add item on cart', async () => {
         await test.step('Add item on cart', async () => {
 
-        await Homepage.selectItem();
+            await ProductPage.selectItem();
 
         });
     });
