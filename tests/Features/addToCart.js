@@ -31,7 +31,7 @@ test.describe('Add Item to a Cart', () => {
         await test.step('Add item on cart', async () => {
             await ProductPage.selectItem();
             await ProductPage.enterQuantity();
-            await page.pause();
+            await ProductPage.clickaddToCartBtn();
         });
     });
 

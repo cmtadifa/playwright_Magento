@@ -5,6 +5,7 @@ class homePage {
         this.id = page.locator('#search');
         this.color = page.locator('.swatch-option.color');
         this.quantity = page.locator('.input-text.qty');
+        this.addtocartBtn = page.locator('.action.primary.tocart');
     }
 
     //parameterized constructor
@@ -45,6 +46,10 @@ class homePage {
     async enterQuantity() {
         const quantity = Math.floor(Math.random() * 10) + 1; 
         await this.quantity.fill(quantity.toString());
+    }
+
+    async clickaddToCartBtn() {
+        await cc.customClick(this.addtocartBtn);
     }
 }
 
