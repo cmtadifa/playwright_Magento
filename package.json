@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "SignInScenario": "npx playwright test tests/Authentication/SignInScenario.js --headed",
-    "SignUpScenario": "npx playwright test tests/Authentication/SignUpScenario.js --headed"
+    "SignUpScenario": "npx playwright test tests/Authentication/SignUpScenario.js --headed",
+    "AddtoCart": "npx playwright test tests/Features/AddtoCart.js --headed"
   },
   "repository": {
     "type": "git",

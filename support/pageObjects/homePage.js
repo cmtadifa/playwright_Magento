@@ -21,12 +21,11 @@ class homePage {
         return cc.customClick(this.page.getByRole("option", { name: "randomSize" }));
     }
 
-    // getProductColor() {
-    //     const color = ['Blue', 'Orange', 'Purple', 'White', 'Yellow', 'Gray', 'Black', 'Green'];
-    //     const randomColor = Math.floor(Math.random() * 11);
-    //     if (this.color[1])
-    //     return cc.customClick(this.page.locator(`.swatch-option.color[randomColor]`));
-    // }
+    getProductColor() {
+        const colorCount = this.color.count();
+        const randomColor = Math.floor(Math.random() * colorCount);
+        return cc.customClick(this.color[randomColor]);
+    }
 
     async navigate() {
         await this.page.goto('/'); 
@@ -54,6 +53,8 @@ class homePage {
         const itemWithSizes = ['Radiant Tee', 'Breathe-Easy Tank', 'Argus All-Weather Tank', 'Hero Hoodie'];
         if (itemWithSizes.includes(randomProduct)) {
             await this.getProductSize();
+
+            await this.getProductColor();
         }else{
             console.log('No size available for this product');
         }
