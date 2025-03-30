@@ -4,6 +4,7 @@ class homePage {
         this.page = page;
         this.id = page.locator('#search');
         this.color = page.locator('.swatch-option.color');
+        this.quantity = page.locator('.input-text.qty');
     }
 
     //parameterized constructor
@@ -34,15 +35,16 @@ class homePage {
 
         const itemWithSizes = ['Radiant Tee', 'Breathe-Easy Tank', 'Argus All-Weather Tank', 'Hero Hoodie'];
         if (itemWithSizes.includes(randomProduct)) {
-
             await this.selectProductSize();
-
             await this.selectProductColor();
-
         }else{
             console.log('No size available for this product');
         }
+    }
 
+    async enterQuantity() {
+        const quantity = Math.floor(Math.random() * 10) + 1; 
+        await this.quantity.fill(quantity.toString());
     }
 }
 

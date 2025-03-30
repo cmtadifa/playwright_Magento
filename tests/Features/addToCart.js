@@ -10,7 +10,6 @@ test.describe('Add Item to a Cart', () => {
     let page, Homepage, Accpage, ProductPage;
 
     test.beforeAll(async ({ browser }) => {
-
         page = await browser.newPage();
         Homepage = new homePage(page);
         Accpage = new Accountpage(page);
@@ -22,20 +21,17 @@ test.describe('Add Item to a Cart', () => {
 
     test('Login using Valid Credentials', async () => {
         await test.step('Login using Valid Credentials', async () => {
-
             await Accpage.verifySignIn();
-
             await Accpage.verifyclickSignInBtn();
-
         });
     });
 
 
     test('Add item on cart', async () => {
         await test.step('Add item on cart', async () => {
-
             await ProductPage.selectItem();
-
+            await ProductPage.enterQuantity();
+            await page.pause();
         });
     });
 

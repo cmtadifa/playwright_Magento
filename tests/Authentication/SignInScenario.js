@@ -8,13 +8,10 @@ test.describe('Magento Authentication', () => {
     });
 
         test('Successfully Log-In with valid Credentials', async ({ Accountpage }) => {
-
             //fill-in all the Sign-In Information
             await Accountpage.verifySignIn();
-
             //click the Sign-In button
             await Accountpage.verifyclickSignInBtn();
-
             await Accountpage.verifyhomepage();
         });
 
@@ -22,22 +19,16 @@ test.describe('Magento Authentication', () => {
             await test.step('Fails to Login with Invalid Credentials', async () => {
                 //fill-in all the Sign-In Information
                 await Accountpage.verifyInvalidSignIn();
-
                 await Accountpage.verifyclickSignInBtn();
-
                 await Accountpage.verifyhomepage();
-
                 await Accountpage.verifyErrorLogin();
             });
         });
 
         test('Login and Password field required Error', async ({ Accountpage }) => {
             await test.step('Login and Password field required', async () => {
-
                 await Accountpage.verifyclickSignInBtn();
-
                 await Accountpage.verifyErrorRequired();
-
             });
         });
 
