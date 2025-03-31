@@ -9,7 +9,7 @@ class homePage {
 
     // Navigate to the homepage
     async navigate() {
-        await this.page.goto('/'); 
+        await this.page.goto('/', { waitUntil: 'domcontentloaded' }); 
         await expect(this.page).toHaveTitle(/Home Page/);1
     }
 

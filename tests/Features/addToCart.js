@@ -32,6 +32,7 @@ test.describe('Add Item to a Cart', () => {
             await ProductPage.selectItem();
             await ProductPage.enterQuantity();
             await ProductPage.clickaddToCartBtn();
+            await ProductPage.successAddToCartMessage();
         });
     });
 

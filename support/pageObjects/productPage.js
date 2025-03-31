@@ -1,4 +1,6 @@
+import { expect } from 'playwright/test';
 import * as cc from '../commands';
+import { time } from 'console';
 class homePage {
     constructor(page) {
         this.page = page;
@@ -6,6 +8,10 @@ class homePage {
         this.color = page.locator('.swatch-option.color');
         this.quantity = page.locator('.input-text.qty');
         this.addtocartBtn = page.locator('.action.primary.tocart');
+        // this.successAddToCart = page.locator('.message-success.success.message');
+        this.sizes = page.locator('.swatch-option.text');
+
+        this.randomProduct = '';
     }
 
     //parameterized constructor
@@ -13,10 +19,29 @@ class homePage {
         return this.page.locator(`.product-item-name a[title="${productName}"]`);
     }
 
-    selectProductSize() {
-        const sizes = ['XS', 'S', 'M', 'L', 'XL'];
-        const randomSize = sizes[Math.floor(Math.random() * sizes.length)]; 
-        return cc.customClick(this.page.getByRole("option", { name: randomSize }));
+    successAddToCart() {
+        return this.page.getByText(`You added ${this.randomProduct} to your shopping cart.`);
+    }
+
+    //async blocks
+    async selectItem() {
+        const items = ['Radiant Tee', 'Breathe-Easy Tank', 'Argus All-Weather Tank', 'Hero Hoodie'];  //, 'Fusion Backpack', 'Push It Messenger Bag' these are the items NOT available in stocks
+        this.randomProduct = items[Math.floor(Math.random() * items.length)]; 
+        await this.getProductItem(this.randomProduct).click();
+
+        const itemWithSizes = ['Radiant Tee', 'Breathe-Easy Tank', 'Argus All-Weather Tank', 'Hero Hoodie'];
+        if (itemWithSizes.includes(this.randomProduct)) {
+            await this.selectProductSize();
+            await this.selectProductColor();
+        }else{
+            console.log('No size available for this product');
+        }
+    }
+
+    async selectProductSize() {
+        const sizes = await this.sizes.count();
+        const randomSize = Math.floor(Math.random() * sizes);
+        await cc.customClick(this.sizes.nth(randomSize));
     }
 
     async selectProductColor() {
@@ -29,27 +54,18 @@ class homePage {
         }
     }
 
-    async selectItem() {
-        const items = ['Radiant Tee', 'Breathe-Easy Tank', 'Argus All-Weather Tank', 'Hero Hoodie', 'Fusion Backpack', 'Push It Messenger Bag']; 
-        const randomProduct = items[Math.floor(Math.random() * items.length)]; 
-        await this.getProductItem(randomProduct).click();
-
-        const itemWithSizes = ['Radiant Tee', 'Breathe-Easy Tank', 'Argus All-Weather Tank', 'Hero Hoodie'];
-        if (itemWithSizes.includes(randomProduct)) {
-            await this.selectProductSize();
-            await this.selectProductColor();
-        }else{
-            console.log('No size available for this product');
-        }
-    }
-
     async enterQuantity() {
-        const quantity = Math.floor(Math.random() * 10) + 1; 
+        const quantity = Math.floor(Math.random() * 4) + 1; 
         await this.quantity.fill(quantity.toString());
     }
 
     async clickaddToCartBtn() {
         await cc.customClick(this.addtocartBtn);
+    }
+
+    async successAddToCartMessage() {
+        await expect(this.successAddToCart()).toBeVisible();
+        await expect(this.successAddToCart()).toHaveText(`You added ${this.randomProduct} to your shopping cart.`);
     }
 }
 
