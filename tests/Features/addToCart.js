@@ -26,7 +26,6 @@ test.describe('Add Item to a Cart', () => {
         });
     });
 
-
     test('Add item on cart', async () => {
         await test.step('Add item on cart', async () => {
             await ProductPage.selectItem();
@@ -35,6 +34,4 @@ test.describe('Add Item to a Cart', () => {
             await ProductPage.successAddToCartMessage();
         });
     });
-
-
 });

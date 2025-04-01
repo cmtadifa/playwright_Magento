@@ -8,7 +8,6 @@ class homePage {
         this.color = page.locator('.swatch-option.color');
         this.quantity = page.locator('.input-text.qty');
         this.addtocartBtn = page.locator('.action.primary.tocart');
-        // this.successAddToCart = page.locator('.message-success.success.message');
         this.sizes = page.locator('.swatch-option.text');
 
         this.randomProduct = '';
