@@ -5,6 +5,7 @@
 // create a invoice from the purchase order
 // create a credit memo from the invoice
 
+// create a global selection for navigation
 
 // await Accountpage.pause(); --this is for pausing the test
 //npx playwright test --grep @fast --this is for running with tags
