@@ -20,11 +20,11 @@ test.describe('qwe', () => {
         
     });
 
-    test('clicking navbar', async () => {
+    test('hover navbar', async () => {
         await test.step('clicking navbar', async () => {
             await Homepage.waitNavigationArrow();
-            await Homepage.selectNavigation('women');
-            await Homepage.selectSubNavigation('women-tops');
+            await Homepage.selectNavigation('training', 'hover');
+            await Homepage.selectSubNavigation('video_download', 'click');
             await page.pause();
         });
     });

@@ -31,37 +31,65 @@ class homePage {
         await cc.customClick(this.loginLink);
     }
 
-    async selectNavigation(navigationName) {
+    async selectNavigation(navigationName, action = 'click') {
+        let navigationElement;
+        
         switch(navigationName) {
             case 'whats-new':
-                await this.getMainNavigation('1').click();
+                navigationElement = this.getMainNavigation('1');
                 break;
             case 'women':
-                await this.getMainNavigation('2').hover();
+                navigationElement = this.getMainNavigation('2');
                 break;
             case 'men':
-                await this.getMainNavigation('4').click();
+                navigationElement = this.getMainNavigation('3');
                 break;
             case 'gear':
-                await this.getMainNavigation('5').click();
+                navigationElement = this.getMainNavigation('4');
                 break;
             case 'training':
-                await this.getMainNavigation('6').click();
+                navigationElement = this.getMainNavigation('5');
                 break;
             case 'sale':
-                await this.getMainNavigation('7').click();
+                navigationElement = this.getMainNavigation('6');
                 break;
+        }
+        
+        if (action.toLowerCase() === 'hover') {
+            await navigationElement.hover();
+        } else {
+            await navigationElement.click();
         }
     }
 
-    async selectSubNavigation(subNavigationName) {
+    async selectSubNavigation(subNavigationName, action = 'click') {
+        let subNavigationElement;
+
         switch(subNavigationName) {
-            case 'women-tops':
-                await this.getSubNavigation('Tops').hover();
+            case 'tops':
+                subNavigationElement = this.getSubNavigation('Tops');
                 break;
-            case 'women-bottoms':
-                await this.getSubNavigation('Bottoms').hover();
+            case 'bottoms':
+                subNavigationElement = this.getSubNavigation('Bottoms');
                 break;
+            case 'bags':
+                subNavigationElement = this.getSubNavigation('Bags');
+                break;
+            case 'fitness_equipment':
+                subNavigationElement = this.getSubNavigation('Fitness Equipment');
+                break;
+            case 'watches':
+                subNavigationElement = this.getSubNavigation('Watches');
+                break;
+            case 'video_download':
+                subNavigationElement = this.getSubNavigation('Video Download');
+                break;
+        }
+
+        if (action.toLowerCase() === 'hover') {
+            await subNavigationElement.hover();
+        } else {
+            await subNavigationElement.click();
         }
     }
 
