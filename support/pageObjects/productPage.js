@@ -1,7 +1,7 @@
 import { expect } from 'playwright/test';
 import * as cc from '../commands';
 import { time } from 'console';
-class homePage {
+class productPage {
     constructor(page) {
         this.page = page;
         this.id = page.locator('#search');
@@ -68,4 +68,4 @@ class homePage {
     }
 }
 
-export default homePage;
+export default productPage;
