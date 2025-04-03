@@ -31,10 +31,6 @@ class homePage {
         await cc.customClick(this.loginLink);
     }
 
-    async gotoHomepage() {
-        require('../TCM/accessHomepage');
-    }
-
     async selectNavigation(navigationName) {
         switch(navigationName) {
             case 'whats-new':
