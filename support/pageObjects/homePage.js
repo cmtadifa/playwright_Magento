@@ -93,6 +93,28 @@ class homePage {
         }
     }
 
+    async tertiaryNavigation(tertiaryNavigationName) {
+        switch(tertiaryNavigationName) {
+            case 'jackets':
+                await this.getSubNavigation('jackets').click();
+                break;
+            case 'hoodies_and_sweatshirts':
+                await this.getSubNavigation('Hoodies & Sweatshirts').click();
+                break;
+            case 'tees':
+                await this.getSubNavigation('Tees').click();
+                break;
+            case 'bras_and_tanks':
+                await this.getSubNavigation('Bras & Tanks').click();
+                break;
+            case 'pants':
+                await this.getSubNavigation('Pants').click();
+                break;
+            case 'shorts':
+                await this.getSubNavigation('Shorts').click();
+                break;
+        }
+    }
     async waitNavigationArrow() {
         await this.navigationArrow.waitFor({ state: 'visible' });
     }
