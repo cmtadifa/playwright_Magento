@@ -1,6 +1,6 @@
 import { test } from '../../fixtures/base';
 import homePage from '../../support/pageObjects/homePage';
-import Accountpage from '../../support/pageObjects/accountsPage';
+import accountpage from '../../support/pageObjects/accountsPage';
 import productPage from '../../support/pageObjects/productPage';
 import { time } from 'console';
 
@@ -13,7 +13,7 @@ test.describe('qwe', () => {
     test.beforeAll(async ({ browser }) => {
         page = await browser.newPage();
         Homepage = new homePage(page);
-        Accpage = new Accountpage(page);
+        Accpage = new accountpage(page);
         ProductPage = new productPage(page);
 
         await Homepage.navigate();
