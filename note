@@ -1,11 +1,12 @@
-// create a adding a cart on
+// create a adding a cart on - passed
 // create purchase order from the cart
 // create a payment from the purchase order
 // create a shipment from the purchase order
 // create a invoice from the purchase order
 // create a credit memo from the invoice
 
-// create a global selection for navigation
+// create a global selection for navigation - passed
+
 
 // await Accountpage.pause(); --this is for pausing the test
 //npx playwright test --grep @fast --this is for running with tags

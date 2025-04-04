@@ -6,6 +6,7 @@ class homePage {
         this.createAccLink = page.getByRole('link', { name: 'Create an Account'});
         this.loginLink = page.getByRole('link', { name: 'Sign In'});
         this.navigationArrow = page.getByRole('menuitem', { name: 'Women'});
+        this.shoppingCart = page.locator('.action.showcart');
     }
 
     //parameterized constructor
@@ -115,10 +116,14 @@ class homePage {
                 break;
         }
     }
+
     async waitNavigationArrow() {
         await this.navigationArrow.waitFor({ state: 'visible' });
     }
 
+    async selectShoppingCart() {
+        await cc.customClick(this.shoppingCart);
+    }
 }
 
 export default homePage;

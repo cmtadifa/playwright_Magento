@@ -5,7 +5,7 @@ import productPage from '../../support/pageObjects/productPage';
 
 test.describe.configure({ mode: 'serial' });
 
-test.describe('Add Item to a Cart', () => {
+test.describe('Purchase Item from Shopping Cart', () => {
 
     let page, Homepage, Accpage, ProductPage;
 
@@ -31,4 +31,11 @@ test.describe('Add Item to a Cart', () => {
             await ProductPage.addingToCart();
         });
     });
+
+    test('click the shopping cart', async () => {
+        await test.step('clicking shopping cart', async () => {
+            await Homepage.selectShoppingCart();
+        });
+    });
+
 });

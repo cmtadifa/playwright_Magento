@@ -1,6 +1,7 @@
 import { expect } from 'playwright/test';
 import * as cc from '../commands';
 import { time } from 'console';
+
 class productPage {
     constructor(page) {
         this.page = page;
@@ -65,6 +66,14 @@ class productPage {
     async successAddToCartMessage() {
         await expect(this.successAddToCart()).toBeVisible();
         await expect(this.successAddToCart()).toHaveText(`You added ${this.randomProduct} to your shopping cart.`);
+    }
+
+    //method of the class
+    async addingToCart() {
+        await this.selectItem();
+        await this.enterQuantity();
+        await this.clickaddToCartBtn();
+        await this.successAddToCartMessage();
     }
 }
 
