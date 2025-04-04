@@ -10,6 +10,7 @@ class productPage {
         this.quantity = page.locator('.input-text.qty');
         this.addtocartBtn = page.locator('.action.primary.tocart');
         this.sizes = page.locator('.swatch-option.text');
+        this.cartCheckoutBtn = page.locator('#top-cart-btn-checkout');
 
         this.randomProduct = '';
     }
@@ -66,6 +67,10 @@ class productPage {
     async successAddToCartMessage() {
         await expect(this.successAddToCart()).toBeVisible();
         await expect(this.successAddToCart()).toHaveText(`You added ${this.randomProduct} to your shopping cart.`);
+    }
+
+    async clickCartCheckoutBtn() {
+        await cc.customClick(this.cartCheckoutBtn);
     }
 
     //method of the class
