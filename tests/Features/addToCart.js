@@ -21,7 +21,7 @@ test.describe('Add Item to a Cart', () => {
 
     test('Login using Valid Credentials', async () => {
         await test.step('Login using Valid Credentials', async () => {
-            await Accpage.verifySignIn();
+            await Accpage.verifySignIn('user1');
             await Accpage.verifyclickSignInBtn();
         });
     });

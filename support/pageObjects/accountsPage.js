@@ -58,9 +58,17 @@ class accountsPage {
     }
 
     //SignIn
-    async verifySignIn() {
-        await this.signInEmail.fill(users.user.users1.Email);
-        await this.signInpassword.fill(users.user.users1.Password);
+    async verifySignIn(accountUser) {
+        switch (accountUser) {
+            case 'user1':
+                await this.signInEmail.fill(users.user.users1.Email);
+                await this.signInpassword.fill(users.user.users1.Password);
+                break;
+            case 'user2':
+                await this.signInEmail.fill(users.user.users2.Email);
+                await this.signInpassword.fill(users.user.users2.Password);
+                break;
+        }
     }
 
     async verifyInvalidSignIn() {

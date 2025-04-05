@@ -1,6 +1,8 @@
 import { expect } from 'playwright/test';
 import * as cc from '../commands';
 import { time } from 'console';
+import { faker } from '@faker-js/faker';
+import users from '../../fixtures/test-data/users.json';
 
 class productPage {
     constructor(page) {
@@ -10,9 +12,22 @@ class productPage {
         this.quantity = page.locator('.input-text.qty');
         this.addtocartBtn = page.locator('.action.primary.tocart');
         this.sizes = page.locator('.swatch-option.text');
-        this.cartCheckoutBtn = page.locator('#top-cart-btn-checkout');
+        this.cartCheckoutBtn = page.locator('.action.primary.checkout');
 
-        this.randomProduct = '';
+        //shipping address
+        this.fnameTxtfield = page.getByRole('textbox', { name: 'First Name' });
+        this.lnameTxtfield = page.getByRole('textbox', { name: 'Last Name' });
+        this.companyTxtfield = page.getByRole('textbox', { name: 'Company' });
+        this.address1Txtfield = page.getByRole('textbox', { name: 'Street Address: Line 1' });
+        this.address2Txtfield = page.getByRole('textbox', { name: 'Street Address: Line 2' });
+        this.address3Txtfield = page.getByRole('textbox', { name: 'Street Address: Line 3' });
+        this.cityTxtfield = page.getByRole('textbox', { name: 'City' });
+        this.stateDropdown = page.getByRole('combobox', { name: 'State/Province' });
+        this.zipTxtfield = page.getByRole('textbox', { name: 'Zip/Postal Code' });
+        this.countryDropdown = page.getByRole('combobox', { name: 'Country' });
+        this.phoneTxtfield = page.getByRole('textbox', { name: 'Phone Number' });
+        this.fixedRadioBtn = page.getByRole('radio', { name: 'Fixed Flat Rate' });
+        this.tableRateRadioBtn = page.getByRole('radio', { name: 'Table Rate Best Way' });
     }
 
     //parameterized constructor
@@ -71,6 +86,36 @@ class productPage {
 
     async clickCartCheckoutBtn() {
         await cc.customClick(this.cartCheckoutBtn);
+    }
+
+    async fillUpShippingAddress(accountUser) {
+        const randomState = faker.location.state({ abbreviated: false });
+        const randomPhoneNumber = faker.phone.number('(###) ###-####');
+        switch (accountUser) {
+            case 'user1':
+                await expect(this.fnameTxtfield).toHaveValue(users.user.users1.FirstName);
+                await expect(this.lnameTxtfield).toHaveValue(users.user.users1.LastName);
+                break;
+            case 'user2':
+                await expect(this.fnameTxtfield).toHaveValue(users.user.users2.FirstName);
+                await expect(this.lnameTxtfield).toHaveValue(users.user.users2.LastName);
+                break;
+        }
+        await this.companyTxtfield.fill(faker.company.name());
+        await this.address1Txtfield.fill(faker.location.streetAddress());
+        await this.address2Txtfield.fill(faker.location.streetAddress());
+        await this.address3Txtfield.fill(faker.location.streetAddress());
+        await this.cityTxtfield.fill(faker.location.city());
+        await this.stateDropdown.selectOption({ label: randomState });
+        await this.zipTxtfield.fill(faker.location.zipCode());
+        await expect(this.countryDropdown).toHaveValue('US');
+        await this.phoneTxtfield.fill(randomPhoneNumber);
+        const randomNum = Math.floor(Math.random() * 2) + 1;
+        if (randomNum === 1) {
+            await cc.customClick(this.fixedRadioBtn);
+        } else {
+            await cc.customClick(this.tableRateRadioBtn);
+        }
     }
 
     //method of the class

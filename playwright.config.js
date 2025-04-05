@@ -13,6 +13,7 @@ import { defineConfig, devices } from '@playwright/test';
  * @see https://playwright.dev/docs/test-configuration
  */
 export default defineConfig({
+  
   timeout: 60000,
   testDir: './tests',
   testMatch: '**/*.js',
@@ -30,7 +31,7 @@ export default defineConfig({
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: 'https://magento.softwaretestingboard.com/',
-    actionTimeout: 30000,
+    // actionTimeout: 10 * 1000,
     // screenshot: 'on',
     // video: 'on',
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */

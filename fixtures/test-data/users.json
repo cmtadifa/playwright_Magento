@@ -6,6 +6,13 @@
             "Email": "CarlosMagenta21@guerrillamailblock.com",
             "Password": "clientAccount@123",
             "WrongPassword": "clientAccount@1234"
+        },
+        "users2": {
+            "FirstName": "admin",
+            "LastName": "admin",
+            "Email": "admin123@admin.com",
+            "Password": "admin123!",
+            "WrongPassword": "admin123!"
         }
     }
 }
