@@ -10,6 +10,9 @@ class accountsPage {
         //SignUp
         this.firstname = page.locator('#firstname');
         this.lastname = page.locator('#lastname');
+        this.signUpEmail = page.locator('#email_address');
+        this.signUpPassword = page.locator('#password');
+        this.signUpPasswordConfirm = page.locator('#password-confirmation');
         this.createAccBtn = page.locator('.action.submit.primary');
         this.firstnameError = page.locator('#firstname-error');
         this.lastnameError = page.locator('#lastname-error');
@@ -42,10 +45,11 @@ class accountsPage {
         await this.lastname.fill(this.lName);
     }
 
-    async verifySignInInformation() {
-        await this.email.fill(`${this.fName}${this.lName}${this.randomNum}@guerrillamailblock.com`);
-        await this.password.fill('clientAccount@123');
-        await this.cPassword.fill('clientAccount@123');
+    async verifySignUpInformation() {
+        await this.signUpEmail.fill(`${this.fName}${this.lName}${this.randomNum}@guerrillamailblock.com`);
+        console.log('asd',this.signUpEmail);
+        await this.signUpPassword.fill('clientAccount@123');
+        await this.signUpPasswordConfirm.fill('clientAccount@123');
 
     }
 
@@ -54,6 +58,7 @@ class accountsPage {
     }
 
     async verifyRequiredErrorField() {
+        await cc.customClick(this.firstname);
         await expect(this.firstnameError, this.lastnameError, this.emailError, this.passwordError, this.cPasswordError).toBeVisible();
     }
 

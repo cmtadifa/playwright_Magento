@@ -28,6 +28,7 @@ class productPage {
         this.phoneTxtfield = page.getByRole('textbox', { name: 'Phone Number' });
         this.fixedRadioBtn = page.getByRole('radio', { name: 'Fixed Flat Rate' });
         this.tableRateRadioBtn = page.getByRole('radio', { name: 'Table Rate Best Way' });
+        this.shipNextBtn = page.locator('..button.action.continue.primary');
     }
 
     //parameterized constructor
@@ -116,6 +117,10 @@ class productPage {
         } else {
             await cc.customClick(this.tableRateRadioBtn);
         }
+    }
+
+    async shipNextBtn() {
+        await cc.customClick(this.shipNextBtn);
     }
 
     //method of the class

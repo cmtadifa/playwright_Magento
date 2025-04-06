@@ -2,7 +2,6 @@ import { test } from '../../fixtures/base';
 import homePage from '../../support/pageObjects/homePage';
 import accountpage from '../../support/pageObjects/accountsPage';
 import productPage from '../../support/pageObjects/productPage';
-import { time } from 'console';
 
 test.describe.configure({ mode: 'serial' });
 
@@ -43,6 +42,7 @@ test.describe('Purchase Item from Shopping Cart', () => {
         await test.step('checking out', async () => {
             await ProductPage.clickCartCheckoutBtn();
             await ProductPage.fillUpShippingAddress('user2');
+            await ProductPage.shipNextBtn();
             await page.pause();
         });
     });
