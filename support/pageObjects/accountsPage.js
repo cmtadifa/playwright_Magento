@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test';
-import { faker } from '@faker-js/faker';
+import { faker, th } from '@faker-js/faker';
 import users from '../../fixtures/test-data/users.json';
 import * as cc from '../commands';
 
@@ -47,19 +47,28 @@ class accountsPage {
 
     async verifySignUpInformation() {
         await this.signUpEmail.fill(`${this.fName}${this.lName}${this.randomNum}@guerrillamailblock.com`);
-        console.log('asd',this.signUpEmail);
         await this.signUpPassword.fill('clientAccount@123');
         await this.signUpPasswordConfirm.fill('clientAccount@123');
 
     }
 
     async verifyclickCreateAccBtn() {
+        await this.password.blur();
         await cc.customClick(this.createAccBtn);
     }
 
     async verifyRequiredErrorField() {
-        await cc.customClick(this.firstname);
-        await expect(this.firstnameError, this.lastnameError, this.emailError, this.passwordError, this.cPasswordError).toBeVisible();
+        const errors = [
+            this.firstnameError,
+            this.lastnameError,
+            this.emailError,
+            this.passwordError,
+            this.cPasswordError,
+          ];
+
+            for (const error of errors) {
+                await expect(error).toBeVisible();
+            }
     }
 
     //SignIn
