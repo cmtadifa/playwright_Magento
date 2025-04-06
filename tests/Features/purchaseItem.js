@@ -21,7 +21,7 @@ test.describe('Purchase Item from Shopping Cart', () => {
 
     test('Login using Valid Credentials', async () => {
         await test.step('Login using Valid Credentials', async () => {
-            await Accpage.verifySignIn('user2');
+            await Accpage.verifySignIn('user3');
             await Accpage.verifyclickSignInBtn();
         });
     });
@@ -40,9 +40,9 @@ test.describe('Purchase Item from Shopping Cart', () => {
 
     test('Check out', async () => {
         await test.step('checking out', async () => {
-            await ProductPage.clickCartCheckoutBtn();
-            await ProductPage.fillUpShippingAddress('user2');
-            await ProductPage.shipNextBtn();
+            await ProductPage.clickCheckoutBtn();
+            await ProductPage.sendItem('user3', true, false);
+            await ProductPage.clickCheckoutBtn();
             await page.pause();
         });
     });

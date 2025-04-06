@@ -6,8 +6,10 @@
 // create a credit memo from the invoice
 
 // create a global selection for navigation - passed
-
+//after next, select same address then click next, then check for the email
 
 // await Accountpage.pause(); --this is for pausing the test
 //npx playwright test --grep @fast --this is for running with tags
 //npx playwright test --grep-invert @fast --this is for running without tags
+
+//note for user 3 not yet purchase item magento@magento.com

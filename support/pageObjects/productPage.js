@@ -12,7 +12,7 @@ class productPage {
         this.quantity = page.locator('.input-text.qty');
         this.addtocartBtn = page.locator('.action.primary.tocart');
         this.sizes = page.locator('.swatch-option.text');
-        this.cartCheckoutBtn = page.locator('.action.primary.checkout');
+        this.CheckoutBtn = page.locator('.action.primary.checkout');
 
         //shipping address
         this.fnameTxtfield = page.getByRole('textbox', { name: 'First Name' });
@@ -28,7 +28,11 @@ class productPage {
         this.phoneTxtfield = page.getByRole('textbox', { name: 'Phone Number' });
         this.fixedRadioBtn = page.getByRole('radio', { name: 'Fixed Flat Rate' });
         this.tableRateRadioBtn = page.getByRole('radio', { name: 'Table Rate Best Way' });
-        this.shipNextBtn = page.locator('..button.action.continue.primary');
+        this.shipNextBtn = page.locator('.button.action.continue.primary');
+
+        this.recentAddress = page.locator('.shipping-address-item.selected-item');
+        this.newAddress = page.locator('.action.action-show-popup');
+        this.shipHereModalBtn = page.locator('.action.primary.action-save-address');
     }
 
     //parameterized constructor
@@ -85,41 +89,87 @@ class productPage {
         await expect(this.successAddToCart()).toHaveText(`You added ${this.randomProduct} to your shopping cart.`);
     }
 
-    async clickCartCheckoutBtn() {
-        await cc.customClick(this.cartCheckoutBtn);
+    async clickCheckoutBtn() {
+        await cc.customClick(this.CheckoutBtn);
     }
 
-    async fillUpShippingAddress(accountUser) {
+    /**
+     * filling up shipping address
+     * @param {string} accountUser - User identifier (e.g., 'user1')
+     */
+    async fillUpShippingAddress(accountUser){
         const randomState = faker.location.state({ abbreviated: false });
         const randomPhoneNumber = faker.phone.number('(###) ###-####');
-        switch (accountUser) {
-            case 'user1':
-                await expect(this.fnameTxtfield).toHaveValue(users.user.users1.FirstName);
-                await expect(this.lnameTxtfield).toHaveValue(users.user.users1.LastName);
-                break;
-            case 'user2':
-                await expect(this.fnameTxtfield).toHaveValue(users.user.users2.FirstName);
-                await expect(this.lnameTxtfield).toHaveValue(users.user.users2.LastName);
-                break;
-        }
-        await this.companyTxtfield.fill(faker.company.name());
-        await this.address1Txtfield.fill(faker.location.streetAddress());
-        await this.address2Txtfield.fill(faker.location.streetAddress());
-        await this.address3Txtfield.fill(faker.location.streetAddress());
-        await this.cityTxtfield.fill(faker.location.city());
-        await this.stateDropdown.selectOption({ label: randomState });
-        await this.zipTxtfield.fill(faker.location.zipCode());
-        await expect(this.countryDropdown).toHaveValue('US');
-        await this.phoneTxtfield.fill(randomPhoneNumber);
+
+            switch (accountUser) {
+                case 'user1':
+                    await expect(this.fnameTxtfield).toHaveValue(users.user.users1.FirstName);
+                    await expect(this.lnameTxtfield).toHaveValue(users.user.users1.LastName);
+                    break;
+                case 'user2':
+                    await expect(this.fnameTxtfield).toHaveValue(users.user.users2.FirstName);
+                    await expect(this.lnameTxtfield).toHaveValue(users.user.users2.LastName);
+                    break;
+                case 'user3':
+                    await expect(this.fnameTxtfield).toHaveValue(users.user.users3.FirstName);
+                    await expect(this.lnameTxtfield).toHaveValue(users.user.users3.LastName);
+                    break;
+            }
+            await this.companyTxtfield.fill(faker.company.name());
+            await this.address1Txtfield.fill(faker.location.streetAddress());
+            await this.address2Txtfield.fill(faker.location.streetAddress());
+            await this.address3Txtfield.fill(faker.location.streetAddress());
+            await this.cityTxtfield.fill(faker.location.city());
+            await this.stateDropdown.selectOption({ label: randomState });
+            await this.zipTxtfield.fill(faker.location.zipCode());
+            await expect(this.countryDropdown).toHaveValue('US');
+            await this.phoneTxtfield.fill(randomPhoneNumber);
+    }
+
+    async selectPaymentMethod() {
         const randomNum = Math.floor(Math.random() * 2) + 1;
-        if (randomNum === 1) {
-            await cc.customClick(this.fixedRadioBtn);
-        } else {
-            await cc.customClick(this.tableRateRadioBtn);
+            if (randomNum === 1) {
+                await cc.customClick(this.fixedRadioBtn);
+            } else {
+                await cc.customClick(this.tableRateRadioBtn);
+            }
+    }
+
+    /**
+     * adressing on what to choose for shipping address
+     * @param {string} accountUser - User identifier (e.g., 'user1')
+     * @param {boolean} useRecentAddress - Whether to use saved address
+     */
+    async addressShippingAddress(accountUser, useRecentAddress = true) {
+        if (useRecentAddress) {
+            await cc.customClick(this.recentAddress);
+            await this.selectPaymentMethod();
+            await cc.customClick(this.shipNextBtn);
+        }else{
+            await cc.customClick(this.newAddress);
+            await this.fillUpShippingAddress(accountUser);
+            await cc.customClick(this.shipHereModalBtn);
+            await this.selectPaymentMethod();
         }
     }
 
-    async shipNextBtn() {
+    /**
+     * Sends item to shipping
+     * @param {string} accountUser - User identifier (e.g., 'user1')
+     * @param {boolean} useRecentAddress - Whether to use saved address
+     * @param {boolean} [newAccount=false] - Whether this is a new account
+     */
+    async sendItem(accountUser, useRecentAddress, newAccount = false) {
+       if (!newAccount){
+            await this.addressShippingAddress(accountUser, useRecentAddress);
+        }else{
+            await this.fillUpShippingAddress(accountUser);
+            await this.selectPaymentMethod();
+            await cc.customClick(this.shipNextBtn);
+       }
+    }
+
+    async clickshipNextBtn() {
         await cc.customClick(this.shipNextBtn);
     }
 

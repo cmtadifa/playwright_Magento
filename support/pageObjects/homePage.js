@@ -10,10 +10,18 @@ class homePage {
     }
 
     //parameterized constructor
+    /**
+     * Get the main navigation element based on the provided name.
+     * @param {string} navigationName - identifer for locator
+     */
     getMainNavigation(navigationName) {
         return this.page.locator(`.level0.nav-${navigationName}`);
     }
 
+    /**
+     * Get the main navigation element based on the provided name.
+     * @param {string} subNavigationName - identifer for locator
+     */
     getSubNavigation(subNavigationName) {
         return this.page.getByRole('menuitem', { name: `${subNavigationName}` });
     }
@@ -94,6 +102,10 @@ class homePage {
         }
     }
 
+    /**
+     * Click on the tertiary navigation item based on the provided name.
+     * @param {string} tertiaryNavigationName - User identifier (e.g., 'jackets')
+     */
     async tertiaryNavigation(tertiaryNavigationName) {
         switch(tertiaryNavigationName) {
             case 'jackets':

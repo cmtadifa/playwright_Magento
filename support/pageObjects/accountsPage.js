@@ -72,6 +72,10 @@ class accountsPage {
     }
 
     //SignIn
+    /**
+     * Signing-In
+     * @param {string} accountUser - User identifier (e.g., 'user1')
+     */
     async verifySignIn(accountUser) {
         switch (accountUser) {
             case 'user1':
@@ -81,6 +85,10 @@ class accountsPage {
             case 'user2':
                 await this.signInEmail.fill(users.user.users2.Email);
                 await this.signInpassword.fill(users.user.users2.Password);
+                break;
+            case 'user3':
+                await this.signInEmail.fill(users.user.users3.Email);
+                await this.signInpassword.fill(users.user.users3.Password);
                 break;
         }
     }

@@ -13,6 +13,13 @@
             "Email": "admin123@admin.com",
             "Password": "admin123!",
             "WrongPassword": "admin123!"
+        },
+        "users3": {
+            "FirstName": "magento",
+            "LastName": "Purchase",
+            "Email": "magentoPurchase123@guerrillamailblock.com",
+            "Password": "admin123!",
+            "WrongPassword": "admin123!"
         }
     }
 }
