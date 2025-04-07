@@ -8,6 +8,7 @@
 // create a global selection for navigation - passed
 //after next, select same address then click next, then check for the email
 
+//await waitfortimeout -- this is for pause on a secs time
 // await Accountpage.pause(); --this is for pausing the test
 //npx playwright test --grep @fast --this is for running with tags
 //npx playwright test --grep-invert @fast --this is for running without tags
