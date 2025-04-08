@@ -33,6 +33,8 @@ class productPage {
         this.recentAddress = page.locator('.shipping-address-item.selected-item');
         this.newAddress = page.locator('.action.action-show-popup');
         this.shipHereModalBtn = page.locator('.action.primary.action-save-address');
+
+        this.thankYouPurchase = page.locator('.base');
     }
 
     //parameterized constructor
@@ -171,6 +173,10 @@ class productPage {
 
     async clickshipNextBtn() {
         await cc.customClick(this.shipNextBtn);
+    }
+    
+    async thankYouPurchaseMessage() {
+        await expect(this.thankYouPurchase).toHaveText('Thank you for your purchase!');
     }
 
     //method of the class
