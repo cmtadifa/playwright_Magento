@@ -44,7 +44,6 @@ test.describe('Purchase Item from Shopping Cart', () => {
             await ProductPage.sendItem('user3', true, false);
             await ProductPage.clickCheckoutBtn();
             await ProductPage.thankYouPurchaseMessage();
-            await page.pause();
         });
     });
 
