@@ -7,7 +7,7 @@ class emailAPI {
       this.sidToken = '';
       this.emailAddr = '';
     }
-    //need to refactor this to depend on the email address used from test data
+    
     async generateEmail(username) {
       const res = await this.request.get(
         `http://api.guerrillamail.com/ajax.php?f=set_email_user&email_user=${username}`
