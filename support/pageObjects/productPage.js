@@ -86,6 +86,7 @@ class productPage {
     }
 
     async successAddToCartMessage() {
+        await this.successAddToCart().waitFor({ state: 'visible', timeout: 5000 });
         await expect(this.successAddToCart()).toBeVisible();
         await expect(this.successAddToCart()).toHaveText(`You added ${this.randomProduct} to your shopping cart.`);
     }

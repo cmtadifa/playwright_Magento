@@ -1,4 +1,5 @@
 import { expect } from "playwright/test";
+import users from "../../fixtures/test-data/users.json";
 
 class emailAPI {
     constructor(request) {
@@ -7,16 +8,13 @@ class emailAPI {
       this.emailAddr = '';
     }
     //need to refactor this to depend on the email address used from test data
-    async generateEmail() {
+    async generateEmail(username) {
       const res = await this.request.get(
-        `http://api.guerrillamail.com/ajax.php?f=set_email_user&email_user=magentoPurchase123`
+        `http://api.guerrillamail.com/ajax.php?f=set_email_user&email_user=${username}`
       );
       const data = await res.json();
       this.sidToken = data.sid_token;
       this.emailAddr = data.email_addr;
-  
-      console.log('Guerrilla email generated:', this.emailAddr);
-      console.log('sid token email generated:', this.sidToken);
     }
   
     async waitForEmail(retryCount = 10, delay = 3000) {
@@ -28,10 +26,10 @@ class emailAPI {
             );
             const data = await res.json();
             emailList = data.list;
-            // Filter emails based on subject and sort by mail_timestamp (descending)
+
             const foundEmail = emailList
                 .filter(email => email.mail_subject === 'Your Main Website Store order confirmation')
-                .sort((a, b) => b.mail_timestamp - a.mail_timestamp)[0]; // Sort by timestamp to get the most recent email
+                .sort((a, b) => b.mail_timestamp - a.mail_timestamp)[0]; 
             if (foundEmail) {
                 console.log('Most recent email received with subject:', foundEmail.mail_subject);
                 return foundEmail;
@@ -50,8 +48,18 @@ class emailAPI {
       expect(data.mail_subject).toContain('Your Main Website Store order confirmation');
     }
 
-    async getPurchaseItemEmail(){
-        await this.generateEmail();
+    async getPurchaseItemEmail(username){
+      switch (username) {
+        case 'user1':
+            await this.generateEmail(users.user.users1.Username);
+            break;
+        case 'user2':
+            await this.generateEmail(users.user.users2.Username);
+            break;
+        case 'user3':
+            await this.generateEmail(users.user.users3.Username);
+            break;
+    }
         const email = await this.waitForEmail();
         await this.fetchEmail(email.mail_id);
     }

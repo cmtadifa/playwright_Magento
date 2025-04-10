@@ -51,7 +51,7 @@ test.describe('Purchase Item from Shopping Cart', () => {
 
     test('Check Purchase Email', async () => {
         await test.step('Email Purchase Successfuly', async () => {
-            await EmailAPI.getPurchaseItemEmail();
+            await EmailAPI.getPurchaseItemEmail('user3');
         });
     });
 
