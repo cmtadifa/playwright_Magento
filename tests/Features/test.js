@@ -2,31 +2,31 @@ import { test } from '../../fixtures/base';
 import homePage from '../../support/pageObjects/homePage';
 import accountpage from '../../support/pageObjects/accountsPage';
 import productPage from '../../support/pageObjects/productPage';
-import { time } from 'console';
+import emailAPI from '../../support/api/email';
 
 test.describe.configure({ mode: 'serial' });
 
 test.describe('qwe', () => {
 
-    let page, Homepage, Accpage, ProductPage;
+    let page, Homepage, Accpage, ProductPage, EmailAPI;
 
     test.beforeAll(async ({ browser }) => {
         page = await browser.newPage();
         Homepage = new homePage(page);
         Accpage = new accountpage(page);
         ProductPage = new productPage(page);
+        EmailAPI = new emailAPI(page.request);
 
-        await Homepage.navigate();
+
+        
         
     });
 
     test('hover navbar', async () => {
         await test.step('clicking navbar', async () => {
-            await Homepage.waitNavigationArrow();
-            await Homepage.selectNavigation('women', 'hover');
-            await Homepage.selectSubNavigation('bottoms', 'hover');
-            await Homepage.tertiaryNavigation('pants');
-            await page.pause();
+            await EmailAPI.generateEmail();
+            await EmailAPI.waitForEmail();
+            // await EmailAPI.fetchEmail();
         });
     });
 });

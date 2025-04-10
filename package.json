@@ -7,7 +7,8 @@
     "SignUpScenario": "npx playwright test tests/Authentication/SignUpScenario.js --headed",
     "AddtoCart": "npx playwright test tests/Features/addToCart.js --headed",
     "NavigationTest": "npx playwright test tests/Features/test.js --headed",
-    "PurchaseItem": "npx playwright test tests/Features/purchaseItem.js --headed"
+    "PurchaseItem": "npx playwright test tests/Features/purchaseItem.js --headed",
+    "test": "npx playwright test tests/Features/test"
   },
   "repository": {
     "type": "git",

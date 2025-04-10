@@ -2,18 +2,20 @@ import { test } from '../../fixtures/base';
 import homePage from '../../support/pageObjects/homePage';
 import accountpage from '../../support/pageObjects/accountsPage';
 import productPage from '../../support/pageObjects/productPage';
+import emailAPI from '../../support/api/email';
 
 test.describe.configure({ mode: 'serial' });
 
 test.describe('Purchase Item from Shopping Cart', () => {
 
-    let page, Homepage, Accpage, ProductPage;
+    let page, Homepage, Accpage, ProductPage, EmailAPI;
 
     test.beforeAll(async ({ browser }) => {
         page = await browser.newPage();
         Homepage = new homePage(page);
         Accpage = new accountpage(page);
         ProductPage = new productPage(page);
+        EmailAPI = new emailAPI(page.request);
 
         await Homepage.navigate();
         await Homepage.clickSignIn();
@@ -44,6 +46,12 @@ test.describe('Purchase Item from Shopping Cart', () => {
             await ProductPage.sendItem('user3', true, false);
             await ProductPage.clickCheckoutBtn();
             await ProductPage.thankYouPurchaseMessage();
+        });
+    });
+
+    test('Check Purchase Email', async () => {
+        await test.step('Email Purchase Successfuly', async () => {
+            await EmailAPI.getPurchaseItemEmail();
         });
     });
 

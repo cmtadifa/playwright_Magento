@@ -1,6 +1,5 @@
 import { expect } from 'playwright/test';
 import * as cc from '../commands';
-import { time } from 'console';
 import { faker } from '@faker-js/faker';
 import users from '../../fixtures/test-data/users.json';
 
