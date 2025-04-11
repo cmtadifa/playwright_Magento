@@ -18,15 +18,13 @@ test.describe('qwe', () => {
         EmailAPI = new emailAPI(page.request);
 
 
-        
+        await Homepage.navigate();
         
     });
 
     test('hover navbar', async () => {
         await test.step('clicking navbar', async () => {
-            await EmailAPI.generateEmail();
-            await EmailAPI.waitForEmail();
-            // await EmailAPI.fetchEmail();
+            // await ProductPage.searchProduct();
         });
     });
 });

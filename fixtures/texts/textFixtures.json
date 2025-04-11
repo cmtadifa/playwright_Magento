@@ -15,5 +15,13 @@
         "confirmPassword" : "Confirm Password",
         "requiredTxt" : "* Required Fields",
         "createAccountBtn" : "Create an Account"
+    },
+    "search" : {
+        "jacket": "Jacket",
+        "t-shirt": "T-Shirt",
+        "pants": "Pant",
+        "shorts": "Short",
+        "bra": "Bra",
+        "watch": "Watch"
     }
 }

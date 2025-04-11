@@ -2,11 +2,13 @@ import { expect } from 'playwright/test';
 import * as cc from '../commands';
 import { faker } from '@faker-js/faker';
 import users from '../../fixtures/test-data/users.json';
+import * as texts from '../../fixtures/texts/textFixtures.json';
 
 class productPage {
     constructor(page) {
         this.page = page;
-        this.id = page.locator('#search');
+        this.search = page.locator('#search');
+        this.itemProductName = page.locator('.product-item-link');
         this.color = page.locator('.swatch-option.color');
         this.quantity = page.locator('.input-text.qty');
         this.addtocartBtn = page.locator('.action.primary.tocart');
@@ -34,6 +36,8 @@ class productPage {
         this.shipHereModalBtn = page.locator('.action.primary.action-save-address');
 
         this.thankYouPurchase = page.locator('.base');
+
+
     }
 
     //parameterized constructor
@@ -177,6 +181,17 @@ class productPage {
     
     async thankYouPurchaseMessage() {
         await expect(this.thankYouPurchase).toHaveText('Thank you for your purchase!');
+    }
+
+    async searchProduct() {
+        const products = Object.values(texts.search);
+        const randomIndex  = Math.floor(Math.random() * products.length);
+        const randomProduct = products[randomIndex];
+
+        await this.search.fill(randomProduct);
+        await this.search.press('Enter');
+        await this.itemProductName.first().waitFor({ state: 'visible' });
+        await expect(this.itemProductName.first()).toContainText(randomProduct);
     }
 
     //method of the class
