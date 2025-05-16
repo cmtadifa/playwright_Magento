@@ -6,7 +6,6 @@
     "SignInScenario": "npx playwright test tests/Authentication/SignInScenario.js --headed",
     "SignUpScenario": "npx playwright test tests/Authentication/SignUpScenario.js --headed",
     "AddtoCart": "npx playwright test tests/Features/addToCart.js --headed",
-    "NavigationTest": "npx playwright test tests/Features/test.js --headed",
     "PurchaseItem": "npx playwright test tests/Features/purchaseItem.js --headed",
     "Search": "npx playwright test tests/Features/search.js --headed",
     "test": "npx playwright test tests/Features/test --headed"

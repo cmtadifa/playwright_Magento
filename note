@@ -14,3 +14,5 @@
 //npx playwright test --grep-invert @fast --this is for running without tags
 
 //note for user 3 not yet purchase item magento@magento.com
+
+//npm run (package name)
