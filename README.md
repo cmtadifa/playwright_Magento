@@ -1,85 +1,68 @@
-Welcome to my automation testing portfolio! This project showcases my skills on automation testing using **Playwright with JavaScript**. The tests are written for the e-commerce demo site **[Magento Software Testing Board](https://magento.softwaretestingboard.com/)**.
+# Playwright Magento Automation
 
----
+This project demonstrates end-to-end automation testing for the [Magento Software Testing Board](https://magento.softwaretestingboard.com/) demo e-commerce site. It uses **Playwright with JavaScript** and follows the Page Object Model (POM) for maintainability and scalability.
 
-## 🌐 Website Under Test: Magento Software Testing Board
+## Features
 
-The Magento Software Testing Board website is a fully functional e-commerce demo platform.  
-The features that I created tests for in this project are:
-- ✅ End-to-end Playwright test scripts
-- ✅ Test scenarios covering login, add to cart, checkout, and form validations
-- ✅ API Testing using Postman and REST Assured
-  - Including a test to retrieve the value of an email received via YOPmail (temporary email service)
-- ✅ Page Object Model (POM) structure for maintainability and scalability
+- ✅ End-to-end UI test scripts for core e-commerce flows
+- ✅ Test scenarios for login, registration, add to cart, checkout, and form validations
+- ✅ API testing using Postman and REST Assured
+- ✅ Automated email verification using YOPmail (temporary email service)
+- ✅ Page Object Model (POM) structure for reusable and maintainable code
 
-### 🛠️ In Progress / Coming Soon
+## Project Structure
 
-- 🚀 **CI/CD Integration**  
-  Plan to integrate with [GitHub Actions](https://github.com/features/actions) or [Jenkins](https://www.jenkins.io/) for automated test execution on each code push.
-
-- 📋 **Test Report to Use**  
-  Planning to enhance reporting with **Allure Report** or integrate with **Playwright Test HTML Reporter** for detailed execution insights.
-
-- 📋 **Test Management Tool**  
-  Will record and manage test cases and results using **TestRail**, **Xray (for Jira)**, or **Zephyr**.
-  
-- 📋 Using custom commands  
-  Continuing to modularize and reuse code efficiently with Playwright's custom command patterns.
-
-## 🔧 Tech Stack  
-
-| Area               | Technology / Tool                        |
-|--------------------|------------------------------------------|
-| Language           | JavaScript                               |
-| Framework          | Playwright                               |
-| Test Runner        | Playwright Test                          |
-| Browser Test       | Chromium                                 |
-| Version Control    | Git & GitHub                             |
-| API Testing Tools  | Postman, REST Assured                    |
-| Temporary Email    | YOPmail (automated email verification)   |
-| Test Management    | (Planned) TestRail / Xray / Zephyr       |
-| Test Reporting     | (Planned) HTML Reporter, Allure Reports  |
-| CI/CD Integration  | (Planned) GitHub Actions / Jenkins       |
-
-## 📂 Folder Structure
-<pre lang="markdown"> 
+```
 playwright-automation-portfolio/
 │
-├── fixtures              # Stores test data, UI texts, and base fixture logic
-│   ├── test-data         # JSON/JS files with input data for tests
-│   ├── texts             # UI strings or messages for assertions
-│   └── base.js           # Global setup (e.g., login, add to cart fixture, etc.)
+├── fixtures/                # Test data, UI texts, and base fixtures
+│   ├── test-data/           # Input data for tests
+│   ├── texts/               # UI strings/messages for assertions
+│   └── base.js              # Global setup (e.g., login, add to cart fixture)
 │
-├── support               # Reusable helpers and abstractions
-│   ├── api               # API request logic and utils (e.g., auth, CRUD)
-│   └── pageObjects       # Page Object Model classes for UI automation
-│   └── commands.js       # Custom helper functions or commands
+├── support/                 # Helpers and abstractions
+│   ├── api/                 # API request logic and utilities
+│   └── pageObjects/         # Page Object Model classes for UI automation
+│   └── commands.js          # Custom helper functions
 │
-├── tests                 # Organized test files
-│   ├── Authentication    # Login, registration, forgot password, etc.
-│   └── Features          # Feature-specific tests (dashboard, cart, etc.)
+├── tests/                   # Test files
+│   ├── Authentication/      # Login, registration, forgot password, etc.
+│   └── Features/            # Feature-specific tests (dashboard, cart, etc.)
 │
-├── .gitignore            # Files/folders to exclude from git
-├── Jenkinsfile           # CI pipeline config for Jenkins
-├── README.md             # Project documentation
-├── playwright.config.js  # Playwright settings (timeout, baseURL, retries, etc.)
-└── package.json          # Project dependencies and scripts
- </pre>
+├── .gitignore
+├── Jenkinsfile
+├── README.md
+├── playwright.config.js     # Playwright configuration
+└── package.json             # Project dependencies and scripts
+```
 
+## Setup
 
+1. **Clone the repository**
+   ```sh
+   git clone <repo-url>
+   cd playwright-automation-portfolio
+   ```
 
-## 🙋 About Me
+2. **Install dependencies**
+   ```sh
+   npm install
+   ```
 
-I'm a QA Engineer with a strong passion for automation and quality. This portfolio reflects my hands-on experience in writing clean, maintainable test scripts and understanding real-world test scenarios.  
-I am eager to learn new technologies and expand my skill set to deliver even better testing solutions.
+3. **Run tests**
+   ```sh
+   npx playwright test
+   ```
+
+4. **View test report**
+   ```sh
+   npx playwright show-report
+   ```
+
+## Notes
+
+- The project uses Playwright's built-in test runner.
+- Test data and selectors are managed via fixtures and the Page Object Model.
+- API tests and email verification are included for end-to-end coverage.
 
 ---
-
-## 🤝 Let's Connect
-
-Feel free to reach out or connect with me on LinkedIn:  
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=linkedin&style=flat-square)](https://www.linkedin.com/in/cmtadifa/)
-
----
-
-Thank you for visiting my mini portfolio! 🚀
